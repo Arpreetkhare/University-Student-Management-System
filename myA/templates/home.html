@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-bottom: 30px;
+        }
+        button {
+            margin: 10px;
+            width: 150px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Home Page!</h1>
+        <h2>Select the role</h2>
+        <form method="GET" action="{% url 'home' %}">
+            <button type="submit" name="student">Student</button>
+            <button type="submit" name="professor">Professor</button>
+        </form>
+    </div>
+</body>
+</html> 
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <h1> Welcome to the Home Page!</h1>
+    <h2>Select the role</h2>
+
+
+<form method="GET" action="{% url 'home' %}">
+    <button type="submit" name="student">student</button>
+    <button type="submit" name="professor">professor</button>
+</form>
+
+</body>
+</html> {% endcomment %}

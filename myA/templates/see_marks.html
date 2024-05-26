@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            background-color: #f8f9fa;
+            margin: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .total-marks {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Marks</h1>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject_mark in queryset %}
+                <tr>
+                    <td>{{ subject_mark.subject }}</td>
+                    <td>{{ subject_mark.marks }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">No marks found for this student.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Display total marks -->
+        <div class="total-marks">
+            <h2>Total Marks: {{ total_marks.total_marks }}</h2>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks</title>
+</head>
+<body>
+    <h1>Student Marks</h1>
+
+    <table border="1">
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for subject_mark in queryset %}
+        <tr>
+            <td>{{ subject_mark.subject }}</td>
+            <td>{{ subject_mark.marks }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No marks found for this student.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Display total marks -->
+    <h2>Total Marks: {{ total_marks.total_marks }}</h2>
+</body>
+</html> {% endcomment %}

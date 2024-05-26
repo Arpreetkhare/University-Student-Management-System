@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Student Information</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        
+        <h1>Student Information</h1>
+
+        
+        
+        <!-- Search form -->
+        <form method="GET" action="{% url 'get_student' %}">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Displaying student information -->
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Student ID</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in queryset %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.student_id }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.email }}</td>
+                    <td><a href="{% url 'see_marks' student_id=student.student_id.student_id %}" class="btn btn-primary">Report</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No students found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination links -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if queryset.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ queryset.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                
+                <li class="page-item disabled"><a class="page-link" href="#">Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}</a></li>
+                
+                {% if queryset.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ queryset.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ queryset.paginator.num_pages }}">Last &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Student Information</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Student Information</h1>
+        
+        <!-- Search form -->
+        <form method="GET" action="{% url 'get_student' %}">
+            <input type="text" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Displaying student information -->
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th> Department</th>
+                <th>Student ID</th>
+                <th>Address</th>
+                <th>Email</th>
+            </tr>
+            {% for student in queryset %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.student_id }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.email }}</td>
+                <td><a href="{% url 'see_marks' student_id=student.student_id.student_id %}">Report</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No students found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Pagination links -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if queryset.has_previous %}
+                    <a href="?page=1">&laquo; First</a>
+                    <a href="?page={{ queryset.previous_page_number }}">Previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
+                </span>
+                
+                {% if queryset.has_next %}
+                    <a href="?page={{ queryset.next_page_number }}">Next</a>
+                    <a href="?page={{ queryset.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html> {% endcomment %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page 2</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            background-color: #f8f9fa;
+            margin: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-container {
+            text-align: center;
+        }
+        .btn {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome student!</h1>
+        <div class="btn-container">
+            <form method="GET" action="{% url 'mainpage2' %}">
+                <button type="submit" class="btn btn-primary" name="department">Departments</button>
+                <button type="submit" class="btn btn-success" name="student">Students</button>
+                <button type="submit" class="btn btn-info" name="student_profile">Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page 2</title>
+</head>
+<body>
+
+<h1>Welcome student!</h1>
+
+<form method="GET" action="{% url 'mainpage2' %}">
+    <button type="submit" name="department">Departments</button>
+    <button type="submit" name="student">Students</button>
+    <button type="submit" name='student_profile'>Profile</button>
+</form>
+</form>
+
+</body>
+</html> {% endcomment %}

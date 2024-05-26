@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All students of {{ department.name }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        li:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All students of {{ department.name }}</h1>
+        <ul>
+            {% for student in students %}
+            <li>{{ student.name }}</li>
+            {% empty %}
+            <li>No students found for this department.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All students of {{ department.name }}</title>
+    <!-- Add any CSS stylesheets here -->
+</head>
+<body>
+    <h1>All students of {{ department.name }}</h1>
+    <!-- Display departments -->
+    <ul>
+        {% for department in departments %}
+        <li>
+            <form action="{% url 'students_in_department' department.id %}" method="GET">
+                {% csrf_token %}
+                <button type="submit">{{ department.name }}</button>
+            </form>
+        </li>
+        
+        {% endfor %}
+    </ul>
+
+    <!-- Display students for selected department -->
+    <div id="studentsList">
+        <h2>{{ selected_department }}</h2>
+        <ul>
+            {% for student in students %}
+            <li>{{ student.name }}</li>
+            {% empty %}
+            <li>No students found for this department.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Add any additional content here -->
+</body>
+</html> {% endcomment %}
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All students of {{ department.name }}</title>
+</head>
+<body>
+    <h1>All students of {{ department.name }}</h1>
+    <ul>
+        {% for student in students %}
+        <li>{{ student.name }}</li>
+        {% empty %}
+        <li>No students found for this department.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> {% endcomment %}
+
